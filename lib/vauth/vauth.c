@@ -52,12 +52,13 @@ char *Curl_auth_build_spn(const char *service, const char *host,
   char *spn = NULL;
 
   /* Generate our SPN */
-  if(host && realm)
+  if(host && realm) {
     spn = curl_maprintf("%s/%s@%s", service, host, realm);
-  else if(host)
+  } else if(host) {
     spn = curl_maprintf("%s/%s", service, host);
-  else if(realm)
+  } else if(realm) {
     spn = curl_maprintf("%s@%s", service, realm);
+}
 
   /* Return our newly allocated SPN */
   return spn;
